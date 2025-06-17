@@ -21,7 +21,7 @@ const visibleAbout = expanded ? aboutC : aboutC.slice(0, 2);
     <div className="relative h-[35vh] bg-cover bg-center text-white text-center m-0 p-0" style={{ backgroundImage: `url(${coverImg})` }}>
       <div className="absolute inset-0 bg-black/60 z-0" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
-          <h1 className="text-5xl font-bold uppercase text-blue-400 tracking-[0.2em]">O KONFERENCIJI</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-blue-400 tracking-[0.2em]">O KONFERENCIJI</h1>
         </div>
       </div>
 
