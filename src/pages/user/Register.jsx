@@ -55,33 +55,55 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    validateField('username', username);
-    validateField('email', email);
-    validateField('password', password);
+    const trimmedUsername = username.trim();
+    const newErrors = {};
 
-    const hasErrors = Object.values(errors).some((e) => e);
-    if (hasErrors) {
+    if (trimmedUsername.length === 0) {
+      newErrors.username = 'Ime je obavezno';
+    }
+
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      newErrors.email = 'Unesite ispravan email';
+    }
+
+    if (password.length < 6) {
+      newErrors.password = 'Lozinka mora imati barem 6 karaktera';
+    } else if (!/[A-Z]/.test(password)) {
+      newErrors.password = 'Lozinka mora sadržavati barem jedno veliko slovo';
+    } else if (!/[0-9]/.test(password)) {
+      newErrors.password = 'Lozinka mora sadržavati barem jedan broj';
+    } else if (!/[^A-Za-z0-9]/.test(password)) {
+      newErrors.password = 'Lozinka mora sadržavati barem jedan specijalni znak';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setTouched({ username: true, email: true, password: true });
       setMessage("Molimo ispravite greške u formi.");
       return;
     }
 
     try {
-      await registerUser({ username, email, password }).unwrap();
+      await registerUser({ username: trimmedUsername, email, password }).unwrap();
       alert("Uspješno ste se registrovali!");
       navigate("/login");
     } catch (error) {
       console.log("GREŠKA SA SERVERA:", error);
-    if (error.data?.errors) {
-      const serverErrors = {};
-      error.data.errors.forEach(err => {
+      if (error.data?.errors) {
+        const serverErrors = {};
+        error.data.errors.forEach(err => {
         serverErrors[err.param] = err.msg;
-      });
-      setErrors(serverErrors);
-      setTouched({ username: true, email: true, password: true });
-    } else {
-      setMessage("Neuspješna registracija!");
+        });
+        setErrors(serverErrors);
+        setTouched({ username: true, email: true, password: true });
+        setMessage("Molimo ispravite greške označene ispod.");
+      } else if (error.data?.message) {
+      setMessage(error.data.message);
+      } else {
+        setMessage("Neuspješna registracija!");
+      }
     }
-  }
   };
 
   return (
