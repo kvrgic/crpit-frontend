@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const blogApi = createApi({
     reducerPath: 'blogsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://crpit-backend.onrender.com/api/',
+        baseUrl: 'https://crpit-backend.onrender.com/api',
         credentials: 'include',
         prepareHeaders: (headers, { getState }) => {
             const token = getState().auth.user?.token;
