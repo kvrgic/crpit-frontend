@@ -7,6 +7,7 @@ import avatarImg from "../assets/commentor.png";
 import { logout } from '../redux/features/auth/authSlice';
 import { useLogoutUserMutation } from '../redux/features/auth/authApi';
 import crpitImg from '../assets/CRPIT.png';
+import { useNavigate } from 'react-router-dom';
 
 const navList = [
     {name:"Početna", path: "/"},
@@ -24,12 +25,14 @@ const Navbar = () => {
     
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
     const dispatch = useDispatch();
-    const [logoutUser] = useLogoutUserMutation()
+    const [logoutUser] = useLogoutUserMutation();
+    const navigate = useNavigate();
 
     const handleLogout = async () => {
         try {
             await logoutUser().unwrap();
-            dispatch(logout())
+            dispatch(logout());
+            navigate('/login');
         } catch (error) {
         }
     }
