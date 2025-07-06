@@ -5,6 +5,7 @@ import { useLoginUserMutation } from '../../redux/features/auth/authApi';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/features/auth/authSlice';
 import bgImg from '../../assets/3274408.jpg';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 
 const Login = () => {
@@ -62,6 +63,17 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             className='w-full bg-bgPrimary focus:outline-none px-5 py-3'
             />
+            <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-3.5 text-gray-400 hover:text-gray-600"
+                        >
+                        {showPassword ? (
+                        <EyeSlashIcon className="h-4 w-4" />
+                        ) : (
+                        <EyeIcon className="h-4 w-4" />
+                        )}
+            </button>
 
             {
                 message && <p className='text-red-500'>{message}</p>
