@@ -43,7 +43,7 @@ const FlipbookPage = () => {
     <div className="min-h-screen bg-white py-10 px-4 flex justify-center items-center">
       {!showBook ? (
         <div className="shadow-2xl shadow-black/60">
-          <img src="/pages/1.jpg" alt="Naslovnica" className="w-[500px] h-[700px] object-cover" 
+          <img src="/pages/1.jpg" alt="Naslovnica" className="w-full max-w-[500px] aspect-[5/7] object-contain md:object-cover cursor-pointer" 
           onClick={() => setShowBook(true)}/> 
         </div>
       ) : (
