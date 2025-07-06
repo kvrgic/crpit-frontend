@@ -3,7 +3,7 @@ import HTMLFlipBook from "react-pageflip";
 
 
 const FlipbookPage = () => {
-  const [showBook, setShowBook] = useState(false);ž
+  const [showBook, setShowBook] = useState(false);
   const bookRef = useRef();
   const containerRef = useRef();
   const totalPages = 40;
@@ -40,6 +40,7 @@ const FlipbookPage = () => {
           className="outline-none" 
         >
         <HTMLFlipBook
+          ref={bookRef}
           width={500}
           height={700}
           size="stretch"
