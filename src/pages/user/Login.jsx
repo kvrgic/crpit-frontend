@@ -58,7 +58,7 @@ const Login = () => {
             className='w-full bg-bgPrimary focus:outline-none px-5 py-3'
           />
           <div className='relative'>
-            <input type="password" value={password} 
+            <input type={showPassword ? "text" : "password"}
             placeholder='Lozinka'
             required
             onChange={(e) => setPassword(e.target.value)}
@@ -67,7 +67,7 @@ const Login = () => {
             <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-3.5 text-gray-400 hover:text-gray-600">
+              className="absolute right-3 top-3.5 text-gray-400 hover:text-gray-600">
             {showPassword ? (
             <EyeSlashIcon className="h-4 w-4" />
             ) : (
