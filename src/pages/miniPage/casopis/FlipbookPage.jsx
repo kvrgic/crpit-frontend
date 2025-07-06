@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import HTMLFlipBook from "react-pageflip";
 
+
 const FlipbookPage = () => {
-  const [showBook, setShowBook] = useState(false);
+  const [showBook, setShowBook] = useState(false);ž
+  const bookRef = useRef();
+  const containerRef = useRef();
   const totalPages = 40;
+
+  useEffect(() => {
+    if (showBook && containerRef.current) {
+      containerRef.current.focus();
+    }
+  }, [showBook]);
 
   const renderPages = () => {
     const pages = [];
@@ -25,6 +34,11 @@ const FlipbookPage = () => {
           onClick={() => setShowBook(true)}/> 
         </div>
       ) : (
+        <div
+          ref={containerRef}
+          tabIndex={0} 
+          className="outline-none" 
+        >
         <HTMLFlipBook
           width={500}
           height={700}
@@ -41,6 +55,7 @@ const FlipbookPage = () => {
         >
           {renderPages()}
         </HTMLFlipBook>
+        </div>
       )}
     </div>
   );
