@@ -11,7 +11,7 @@ const Registration = () => {
       style={{ backgroundImage: `url(${RegistrationImg}) ` }}>
       <div className="absolute inset-0 bg-black/60 z-0" />
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
-        <h1 className="text-5xl font-bold uppercase text-blue-400 tracking-[0.2em]">ONLINE REGISTRACIJA</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase text-blue-400 tracking-wide">ONLINE REGISTRACIJA</h1>
       </div>
     </div>
 
